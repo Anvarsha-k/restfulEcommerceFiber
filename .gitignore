@@ -1,0 +1,27 @@
+# Go build artifacts
+*.exe
+*.out
+*.test
+*.o
+*.a
+
+# SQLite database file
+api.db
+
+# Env files (in case you add any later)
+.env
+.env.*
+
+# Editor/IDE config files
+.vscode/
+.idea/
+
+# OS and temporary files
+.DS_Store
+*.log
+*.tmp
+*.swp
+
+# Go workspace files (Go 1.18+)
+go.work
+go.work.sum
