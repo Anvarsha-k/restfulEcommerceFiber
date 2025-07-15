@@ -40,7 +40,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 	return c.Status(201).JSON(responseUser)
 
-}
+}	
 func GetUsers(c *fiber.Ctx) error {
 	users := []models.User{}
 
@@ -107,4 +107,19 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	responseUSer := CreateResponseUser(user)
 	return c.Status(200).JSON(responseUSer)
+}
+func DeleteUser(c *fiber.Ctx)error{
+	id,err:=c.ParamsInt("id")
+	var user models.User
+
+	if err!= nil {
+		return c.Status(400).JSON("ensure a valid user")
+	}	
+	if err:=FindUser(id,&user);err!=nil{
+		return c.Status(400).JSON(err.Error())
+	}
+	if err:=database.Database.Db.Delete(&user).Error;err!=nil{
+		return c.Status(400).JSON(err.Error())
+	}
+	return c.Status(200).SendString("user deleted successfully")
 }
